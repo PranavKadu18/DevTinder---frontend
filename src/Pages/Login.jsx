@@ -7,12 +7,11 @@ import { BASE_URL } from "../utils/constants";
 
 
 const Login = () => {
-  const [email, setEmail] = useState("Shreya@gamil.com");
+  const [email, setEmail] = useState("shreya@gamil.com");
   const [password, setPassword] = useState("Shreya@123");
   const dispatch = useDispatch();
-
-  const [registered,setRegistered] = useState();
-  const [flag,setflag] = useState();
+  
+  const [err,seterr] = useState();
   
   const navigate = useNavigate();
 
@@ -28,13 +27,11 @@ const Login = () => {
       );
       
       //saving data in the store without external actions
-      setRegistered(true);
       dispatch(setUser(res.data));
       navigate("/");
 
     } catch (error) {
-      if(error.status === 404) setRegistered(false);
-      else if(error.status === 400) setflag(false);
+      seterr(error.response.data)
       console.log(error);
     }
   };
@@ -71,9 +68,7 @@ const Login = () => {
             />
           </label>
 
-          {registered === false ? <p>New User <span className="text-blue-500 cursor-pointer" onClick={() => navigate("/signup")}>Sign-up</span></p>:<></>}
-          {flag === false ? <p>Wrong Password</p>:<></>}
-
+          <p className="text-red-600">{err}</p>
 
           <div className="card-actions justify-end">
             <button onClick={() => submit()} className="btn btn-primary">

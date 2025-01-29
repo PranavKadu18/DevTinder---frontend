@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-300">
       <div className="flex-1 mx-4">
-        <a className="btn btn-ghost text-xl">🧑‍💻 DevTinder</a>
+        <a onClick={() => data && navigate("/")} className="btn btn-ghost text-xl">🧑‍💻 DevTinder</a>
       </div>
       {data && (
         <div className="flex-none">
@@ -43,7 +43,7 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-44 w-52 p-2 shadow"
             >
-              <li>
+              <li onClick={() => navigate("/profile")}>
                 <a className="justify-between">
                   Profile
                   <span className="badge">New</span>
