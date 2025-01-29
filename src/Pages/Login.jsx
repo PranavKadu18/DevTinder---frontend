@@ -1,19 +1,35 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteUser, setUser } from "../store/reducers/userReducer";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constants";
+
 
 const Login = () => {
   const [email, setEmail] = useState("shreya@gamil.com");
   const [password, setPassword] = useState("Shreya@123");
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
 
   const submit = async () => {
-    const res = await axios.post(
-      "http://localhost:3000/login",
-      {
-        email,
-        password,
-      },
-      { withCredentials: true }
-    );
+    try {
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      //saving data in the store without external actions
+      dispatch(setUser(res.data));
+      navigate("/");
+
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
