@@ -1,11 +1,23 @@
+import axios from "axios";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constants";
+import { deleteUser } from "../store/reducers/userReducer";
 
 const Navbar = () => {
   const { data } = useSelector((state) => state.user);
   const pro =
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   // console.log(data);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    const res = await axios.post(BASE_URL + "/logout",{},{withCredentials : true});
+    dispatch(deleteUser());
+    navigate("/login");
+  }
 
   return (
     <div className="navbar bg-base-300">
@@ -40,8 +52,8 @@ const Navbar = () => {
               <li>
                 <a>Settings</a>
               </li>
-              <li>
-                <a>Logout</a>
+              <li onClick={() => logout()}>
+                <NavLink>Logout</NavLink>
               </li>
             </ul>
             <p>Welcome {data.firstName}</p>
