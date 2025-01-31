@@ -5,20 +5,21 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-
-  const {data} = useSelector(state => state.user)
+  const { data } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!data){
+    if (!data) {
       navigate("/login");
     }
-  },[])
+  }, []);
 
   return (
     <div className="w-full h-screen bg-base-100">
       <Navbar />
-      <Outlet />
+      <div className="w-full min-h-[77.8%] p-5">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
