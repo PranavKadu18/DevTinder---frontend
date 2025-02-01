@@ -5,14 +5,13 @@ import { deleteUser, setUser } from "../store/reducers/userReducer";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
-
 const Login = () => {
   const [email, setEmail] = useState("shreya@gamil.com");
   const [password, setPassword] = useState("Shreya@123");
   const dispatch = useDispatch();
-  
-  const [err,seterr] = useState();
-  
+
+  const [err, seterr] = useState();
+
   const navigate = useNavigate();
 
   const submit = async () => {
@@ -25,14 +24,13 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      
+
       //saving data in the store without external actions
       dispatch(setUser(res.data));
       navigate("/");
-
     } catch (error) {
-      seterr(error.response.data)
-      console.log(error);
+      seterr(error.response.data);
+      // console.log(error);
     }
   };
 
@@ -68,6 +66,17 @@ const Login = () => {
             />
           </label>
 
+          {err && (
+            <p>
+              New User ?{" "}
+              <span
+                className="text-blue-500 cursor-pointer"
+                onClick={() => navigate("/Signup")}
+              >
+                Sign Up
+              </span>
+            </p>
+          )}
           <p className="text-red-600">{err}</p>
 
           <div className="card-actions justify-end">

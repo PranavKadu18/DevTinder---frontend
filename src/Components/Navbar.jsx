@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { deleteUser } from "../store/reducers/userReducer";
+import { deleteFeed } from "../store/reducers/feedReducer";
 
 const Navbar = () => {
   const { data } = useSelector((state) => state.user);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const logout = async () => {
     const res = await axios.post(BASE_URL + "/logout",{},{withCredentials : true});
     dispatch(deleteUser());
+    dispatch(deleteFeed());
     navigate("/login");
   }
 

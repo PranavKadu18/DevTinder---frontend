@@ -2,16 +2,31 @@ import React, { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { setUser } from "../store/reducers/userReducer";
 
 const Home = () => {
   const { data } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const fetchUser = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "/profile/view", {
+        withCredentials: true,
+      });
+      dispatch(setUser(res.data));
+    } catch (error) {
+      if(error.status == 400) navigate("/login");
+    }
+  };
 
   useEffect(() => {
-    if (!data) {
-      navigate("/login");
-    }
+    console.log("home rendered");
+    
+    fetchUser();
   }, []);
 
   return (
