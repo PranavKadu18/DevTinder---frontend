@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFeed } from "../store/reducers/feedReducer";
 import Card from "../Components/Card";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Feed = () => {
       });
       dispatch(setFeed(res.data));
     } catch (error) {
-      if(error.status == 400){
+      if (error.status == 401) {
         navigate("/login");
       }
     }
@@ -32,7 +33,7 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  return data && <Card currUser={data[0]} />;
+  return (data && <Card currUser={data[0]} />) || <Loading />;
 };
 
 export default Feed;

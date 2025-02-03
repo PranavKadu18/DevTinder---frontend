@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { setUser } from "../store/reducers/userReducer";
 import Card from "../Components/Card";
+import Loading from "./Loading";
 
 const EditProfile = ({ currData }) => {
   const [firstName, setFirstName] = useState(currData.firstName);
@@ -41,12 +42,14 @@ const EditProfile = ({ currData }) => {
       }, 3000);
     } catch (error) {
       seterr(error.response.data);
+      if (error.status == 401) navigate("/login");
       // console.log(error);
     }
   };
 
   return (
-    currData && (
+    currData &&
+    ((
       <div className="flex justify-center my-4">
         {saved && (
           <div className="toast z-50 toast-top toast-center">
@@ -62,7 +65,6 @@ const EditProfile = ({ currData }) => {
               <h2 className="card-title">LogIn</h2>
 
               <div className="mainholder gap-8 sm:flex">
-
                 <div className="left">
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
@@ -164,7 +166,6 @@ const EditProfile = ({ currData }) => {
                     ></textarea>
                   </label>
                 </div>
-
               </div>
 
               <p className="text-red-600">{err}</p>
@@ -178,14 +179,16 @@ const EditProfile = ({ currData }) => {
           </div>
 
           <div>
-            <h1 className="sm:mb-8 sm:mt-0 mb-4 mt-6 sm:text-xl">How Users Will See You</h1>
+            <h1 className="sm:mb-8 sm:mt-0 mb-4 mt-6 sm:text-xl">
+              How Users Will See You
+            </h1>
             <Card
               currUser={{ firstName, lastName, age, bio, profilePhoto, gender }}
             />
           </div>
         </div>
       </div>
-    )
+    ) || <Loading />)
   );
 };
 

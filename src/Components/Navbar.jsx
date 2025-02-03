@@ -52,7 +52,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <NavLink to="/connections">Connections</NavLink>
               </li>
               <li onClick={() => logout()}>
                 <NavLink>Logout</NavLink>

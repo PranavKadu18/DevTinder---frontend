@@ -19,12 +19,12 @@ const Home = () => {
       });
       dispatch(setUser(res.data));
     } catch (error) {
-      if(error.status == 400) navigate("/login");
+      if(error.status == 401) navigate("/login");
     }
   };
 
   useEffect(() => {
-    console.log("home rendered");
+    // console.log("home rendered");
     
     fetchUser();
   }, []);
