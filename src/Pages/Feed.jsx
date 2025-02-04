@@ -12,7 +12,7 @@ const Feed = () => {
   const navigate = useNavigate();
 
   const { data } = useSelector((state) => state.feed);
-  console.log(data);
+  // console.log(data);
 
   const getFeed = async () => {
     try {
@@ -28,10 +28,12 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    console.log("feed rendered");
+    // console.log("feed rendered");
 
     getFeed();
   }, []);
+
+  if (data && data.length == 0) return <div className="flex justify-center"><h1 className="text-xl">No New Users 😶‍🌫️</h1></div>;
 
   return (data && <Card currUser={data[0]} />) || <Loading />;
 };

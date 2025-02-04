@@ -10,7 +10,7 @@ import Loading from "./Loading";
 const EditProfile = ({ currData }) => {
   const [firstName, setFirstName] = useState(currData.firstName);
   const [lastName, setLastName] = useState(currData.lastName);
-  const [age, setAge] = useState(currData.age);
+  const [age, setAge] = useState(currData.age || "");
   const [gender, setGender] = useState(currData.gender);
   const [tags, setTags] = useState(currData.tags);
   const [profilePhoto, setProfilePhoto] = useState(currData.profilePhoto);

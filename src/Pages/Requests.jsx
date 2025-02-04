@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { setRequests } from "../store/reducers/requestsReducer";
+import { setRequests, updateRequests } from "../store/reducers/requestsReducer";
 import Loading from "./Loading";
 
 const Requests = () => {
@@ -17,6 +17,7 @@ const Requests = () => {
         {},
         { withCredentials: true }
       );
+      dispatch(updateRequests(_id));
     } catch (error) {
       console.log(error);
     }
@@ -49,8 +50,8 @@ const Requests = () => {
 
   return (
     (requests && (
-      <div className="w-full h-[32vw]  py-4 flex justify-center">
-        <div className="sm:w-[40%]  w-[100%]  min-h-[100%]">
+      <div className="w-full h-[32vw] p-4  py-4 flex justify-center">
+        <div className="sm:w-[40%]  w-[100%] overflow-auto overflow-x-hidden  min-h-[100%]">
           <h1 className="mb-4">Received Requests</h1>
           {requests.map((elem, idx) => {
             const { _id } = elem;

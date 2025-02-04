@@ -6,8 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("shreya@gamil.com");
-  const [password, setPassword] = useState("Shreya@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+
   const dispatch = useDispatch();
 
   const [err, seterr] = useState();
@@ -16,18 +20,28 @@ const Login = () => {
 
   const submit = async () => {
     try {
-      const res = await axios.post(
-        BASE_URL + "/login",
-        {
+      if (isLogin) {
+        const res = await axios.post(
+          BASE_URL + "/login",
+          {
+            email,
+            password,
+          },
+          { withCredentials: true }
+        );
+        //saving data in the store without external actions
+        dispatch(setUser(res.data));
+        navigate("/");
+      } else {
+        const res = await axios.post(BASE_URL + "/signup", {
+          firstName,
+          lastName,
           email,
           password,
-        },
-        { withCredentials: true }
-      );
-
-      //saving data in the store without external actions
-      dispatch(setUser(res.data));
-      navigate("/");
+        },{withCredentials:true});
+        dispatch(setUser(res.data.result));
+        navigate("/profile");
+      }
     } catch (error) {
       seterr(error.response.data);
       // console.log(error);
@@ -38,7 +52,41 @@ const Login = () => {
     <div className="flex justify-center">
       <div className="card bg-base-300 w-96 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">LogIn</h2>
+          <h2 className="card-title">{isLogin ? "LogIn" : "SignUp"}</h2>
+
+          <label
+            className={`form-control ${
+              isLogin ? "hidden" : "block"
+            } w-full max-w-xs pb-2`}
+          >
+            <div className="label">
+              <span className="label-text">Enter Your First Name</span>
+            </div>
+            <input
+              value={firstName}
+              onChange={(val) => setFirstName(val.target.value)}
+              type="text"
+              placeholder="Name"
+              className="input input-bordered w-full max-w-xs"
+            />
+          </label>
+
+          <label
+            className={`form-control ${
+              isLogin ? "hidden" : "block"
+            }  w-full max-w-xs pb-2`}
+          >
+            <div className="label">
+              <span className="label-text">Enter Your Last Name</span>
+            </div>
+            <input
+              value={lastName}
+              onChange={(val) => setLastName(val.target.value)}
+              type="text"
+              placeholder="Name"
+              className="input input-bordered w-full max-w-xs"
+            />
+          </label>
 
           <label className="form-control w-full max-w-xs pb-2">
             <div className="label">
@@ -66,12 +114,12 @@ const Login = () => {
             />
           </label>
 
-          {err && (
+          {isLogin && (
             <p>
               New User ?{" "}
               <span
                 className="text-blue-500 cursor-pointer"
-                onClick={() => navigate("/Signup")}
+                onClick={() => setIsLogin(false)}
               >
                 Sign Up
               </span>
@@ -81,7 +129,7 @@ const Login = () => {
 
           <div className="card-actions justify-end">
             <button onClick={() => submit()} className="btn btn-primary">
-              LogIn
+              {isLogin ? "LogIn" : "SignUp"}
             </button>
           </div>
         </div>
