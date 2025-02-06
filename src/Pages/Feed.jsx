@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { setFeed } from "../store/reducers/feedReducer";
@@ -10,16 +10,21 @@ import Loading from "./Loading";
 const Feed = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDataOver, setIsDataOver] = useState(false);
 
   const { data } = useSelector((state) => state.feed);
-  // console.log(data);
+  console.log(data);
 
   const getFeed = async () => {
     try {
       const res = await axios.get(BASE_URL + "/user/feed", {
         withCredentials: true,
       });
-      dispatch(setFeed(res.data));
+
+      if (res.data.length == 0) {
+        setIsDataOver(true);
+        dispatch(setFeed(null));
+      } else dispatch(setFeed(res.data));
     } catch (error) {
       if (error.status == 401) {
         navigate("/login");
@@ -29,11 +34,22 @@ const Feed = () => {
 
   useEffect(() => {
     // console.log("feed rendered");
+    // console.log(data);
+    
+    if((data == null || data.length == 0) && !isDataOver){
+      console.log("getting data");
+      
+      getFeed();
+    }
+  }, [data]);
 
-    getFeed();
-  }, []);
-
-  if (data && data.length == 0) return <div className="flex justify-center"><h1 className="text-xl">No New Users 😶‍🌫️</h1></div>;
+  if (isDataOver) {
+    return (
+      <div className="flex justify-center">
+        <h1 className="text-xl">No New Users 😶‍🌫️</h1>
+      </div>
+    );
+  }
 
   return (data && <Card currUser={data[0]} />) || <Loading />;
 };
