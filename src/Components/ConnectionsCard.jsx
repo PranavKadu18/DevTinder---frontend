@@ -5,7 +5,7 @@ const ConnectionsCard = ({ data,idx }) => {
   return (
     <Link
       to={`/connections/details/${idx}`}
-      className="w-[100%] h-[20%] bg-base-300 my-2 p-4 rounded-lg flex gap-4 items-center hover:scale-105 duration-300"
+      className="w-[95%]  sm:h-[20%] h-[15%] ml-3 bg-base-300 my-2 p-4 rounded-lg flex gap-4 items-center hover:scale-105 duration-300"
     >
       <img
         className="w-[10%] h-full object-cover rounded-full"

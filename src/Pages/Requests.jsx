@@ -50,9 +50,11 @@ const Requests = () => {
 
   return (
     (requests && (
-      <div className="w-full h-[32vw] p-4  py-4 flex justify-center">
-        <div className="sm:w-[40%]  w-[100%] overflow-auto overflow-x-hidden  min-h-[100%]">
+      <div className=" sm:w-[40vw] w-full h-[70vh] p-5">
+        <div className="w-[100%] h-[10%]">
           <h1 className="mb-4">Received Requests</h1>
+        </div>
+        <div className="h-[100%] w-[100%] overflow-scroll overflow-x-hidden">
           {requests.map((elem, idx) => {
             const { _id } = elem;
             const { firstName, lastName, profilePhoto } = elem.fromUserId;

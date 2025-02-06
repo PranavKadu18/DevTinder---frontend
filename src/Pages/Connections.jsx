@@ -32,7 +32,7 @@ const Connections = () => {
     }
   }, []);
 
-  if (userConnections && userConnections.message == 'No connections')
+  if (userConnections && userConnections.message == "No connections")
     return (
       <div className="flex justify-center">
         <h1 className="text-xl">No Connections Yet 🥲</h1>
@@ -42,9 +42,11 @@ const Connections = () => {
   return (
     userConnections &&
     ((
-      <div className="w-full h-[33vw]  py-4 flex justify-center">
-        <div className="sm:w-[40%] p-4 w-[70%] overflow-auto overflow-x-hidden h-[100%]">
+      <div className=" sm:w-[40vw] w-full h-[70vh] p-5">
+        <div className="w-[100%] h-[10%]">
           <h1 className="text-xl mb-6">{userConnections.message}</h1>
+        </div>
+        <div className="h-[100%] w-[100%] overflow-scroll overflow-x-hidden">
           {userConnections.data.map((elem, idx) => (
             <ConnectionsCard key={idx} idx={idx} data={elem} />
           ))}
@@ -55,3 +57,10 @@ const Connections = () => {
 };
 
 export default Connections;
+
+{
+  /* <h1 className="text-xl mb-6">{userConnections.message}</h1>
+          {userConnections.data.map((elem, idx) => (
+            <ConnectionsCard key={idx} idx={idx} data={elem} />
+          ))} */
+}

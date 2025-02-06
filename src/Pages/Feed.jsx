@@ -13,7 +13,7 @@ const Feed = () => {
   const [isDataOver, setIsDataOver] = useState(false);
 
   const { data } = useSelector((state) => state.feed);
-  console.log(data);
+  // console.log(data);
 
   const getFeed = async () => {
     try {
@@ -35,10 +35,9 @@ const Feed = () => {
   useEffect(() => {
     // console.log("feed rendered");
     // console.log(data);
-    
-    if((data == null || data.length == 0) && !isDataOver){
-      console.log("getting data");
-      
+
+    if ((data == null || data.length == 0) && !isDataOver) {
+      // console.log("getting data");
       getFeed();
     }
   }, [data]);
