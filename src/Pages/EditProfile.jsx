@@ -62,7 +62,7 @@ const EditProfile = ({ currData }) => {
         <div className="sm:flex gap-6">
           <div className="card bg-base-300 sm:min-w-96 shadow-xl">
             <div className="card-body">
-              <h2 className="card-title">LogIn</h2>
+              <h2 className="card-title">Profile</h2>
 
               <div className="mainholder gap-8 sm:flex">
                 <div className="left">
