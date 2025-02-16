@@ -1,1 +1,1 @@
-export const BASE_URL = "/api"; //as now we have changed the nginx config /api will take the ip of server automatically
+export const BASE_URL = location.hostname === 'localhost' ? "http://localhost:3000" : "/api"; //as now we have changed the nginx config /api will take the ip of server automatically
