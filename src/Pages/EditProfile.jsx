@@ -39,7 +39,9 @@ const EditProfile = ({ currData }) => {
 
       setTimeout(() => {
         setSaved(false);
+        navigate("/");
       }, 3000);
+      
     } catch (error) {
       seterr(error.response.data);
       if (error.status == 401) navigate("/login");

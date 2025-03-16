@@ -8,6 +8,9 @@ import { ContainerWithChildren } from "postcss/lib/container";
 import Connections from "./Pages/Connections";
 import Details from "./Pages/Details";
 import Requests from "./Pages/Requests";
+import TermsAnsConditions from "./Pages/TermsAnsConditions";
+import Support from "./Pages/Support";
+import AboutUs from "./Pages/AboutUs";
 
 const App = () => {
   return (
@@ -20,6 +23,9 @@ const App = () => {
           <Route path="/connections" element={<Connections />} />
           <Route path="/connections/details/:id" element={<Details />} />
           <Route path="/requests" element={<Requests />} />
+          <Route path="/tnc" element={<TermsAnsConditions />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Route>
       </Routes>
     </>

@@ -23,8 +23,8 @@ const Card = ({ currUser }) => {
 
   return (
     (currUser && (
-      <div className="flex justify-center">
-        <div className="card bg-base-300 w-96 shadow-xl">
+      <div className="flex justify-center ">
+        <div className="card bg-base-300 w-[88vw] sm:w-96 shadow-xl">
           <figure className="w-full h-56 overflow-hidden">
             <img
               className="w-full h-full object-cover object-center"

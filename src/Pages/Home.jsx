@@ -30,7 +30,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen bg-base-100">
+    <div className="w-[110vw] h-[102vh] sm:w-full sm:h-screen bg-base-100">
       <Navbar />
       <div className="w-full min-h-[77.8%] p-5 flex justify-center ">
         <Outlet />

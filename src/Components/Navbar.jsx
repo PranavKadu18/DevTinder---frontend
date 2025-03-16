@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-300">
       <div className="flex-1 mx-4">
-        <a onClick={() => data && navigate("/")} className="btn btn-ghost text-xl">🧑‍💻 DevTinder</a>
+        <a onClick={() => data && navigate("/")} className="btn btn-ghost text-xl">🧑‍💻 DevCon</a>
       </div>
       {data && (
         <div className="flex-none">
@@ -53,6 +53,9 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to="/connections">Connections</NavLink>
+              </li>
+              <li>
+                <NavLink to="/">Feed</NavLink>
               </li>
               <li>
                 <NavLink to="/requests">Requests</NavLink>

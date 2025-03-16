@@ -34,13 +34,13 @@ const Details = () => {
 
   return (
     user && (
-      <div className="w-[80vw] h-[70vh] ml-[10vw] p-4 flex gap-10">
+      <div className="w-[80vw] h-[70vh] ml-[10vw] p-4 sm:flex gap-10">
         <img
-          className="w-[30%] h-[80%] object-cover"
+          className="sm:w-[30%] sm:h-[80%] w-[90%] h-[50%] object-cover"
           src={user.data[id].profilePhoto}
           alt=""
         />
-        <div>
+        <div className="sm:mt-0 mt-5">
           <h1 className="text-2xl">
             {user.data[id].firstName} {user.data[id].lastName}{" "}
             <span className="text-base">({user.data[id].age})</span>
