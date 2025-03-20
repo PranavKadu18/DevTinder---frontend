@@ -3,13 +3,15 @@ import { IoArrowBack } from "react-icons/io5";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const TermsAnsConditions = () => {
-
   const navigate = useNavigate();
 
   return (
     <div className="sm:w-[70vw] sm:h-[70vh] w-[90vw] overflow-auto">
       <div className="flex items-center gap-4">
-        <IoArrowBack onClick={() => navigate(-1)} className="text-2xl cursor-pointer hover:text-[#FFFF]"/>
+        <IoArrowBack
+          onClick={() => navigate(-1)}
+          className="text-2xl cursor-pointer hover:text-[#FFFF]"
+        />
         <h1 className="text-3xl font-bold">Terms & Conditions</h1>
       </div>
       <div className="mt-8 pl-10">
@@ -19,8 +21,8 @@ const TermsAnsConditions = () => {
         </p>
         <br />
         <p>
-          <h1 className="text-xl font-bold">💖 1. Age and Eligibility</h1>You
-          must be 18+ to use DevTinder — this ain't kindergarten, folks. 😎
+          <h1 className="text-xl font-bold">💖 1. Age and Eligibility</h1>
+          You must be 18+ to use DevTinder — this ain't kindergarten, folks. 😎
         </p>
         <br />
         <p>

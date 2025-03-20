@@ -30,13 +30,12 @@ const Details = () => {
   }, []);
 
   console.log(user);
-  
 
   return (
     user && (
       <div className="w-[80vw] h-[70vh] ml-[10vw] p-4 sm:flex gap-10">
         <img
-          className="sm:w-[30%] sm:h-[80%] w-[90%] h-[50%] object-cover"
+          className="sm:w-[30%] sm:h-[80%] w-[90%] h-[50%] object-cover rounded-lg"
           src={user.data[id].profilePhoto}
           alt=""
         />

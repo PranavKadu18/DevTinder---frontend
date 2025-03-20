@@ -62,7 +62,7 @@ const Requests = () => {
             return (
               <div
                 key={idx}
-                className="sm:w-[100%] sm:h-[20%] bg-base-300 my-2 p-4 rounded-lg flex justify-between items-center"
+                className="sm:w-[100%] sm:h-[20%] bg-[#7d1935] my-2 p-4 rounded-lg flex justify-between items-center"
               >
                 <img
                   className="w-[10%] mr-2 sm:mr-0 h-full object-cover rounded-full"

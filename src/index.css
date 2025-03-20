@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* card,navbar bg-[#9b2244]  ------> bg-[#7d1935]
+
+text area in card bg-[#e05270]   ------> bg-[#d14d6a]
+
+gradient bg-gradient-to-r from-rose-400 to-red-500  -----> bg-gradient-to-r from-pink-500 to-orange-400
+
+dropdown tab hover hover:bg-[#EF4545] --------->  hover:bg-[#c43e5c]
+
+dropdown color  bg-[#FA6B7C]  ------> bg-[#e05270]
+*/
+
+
+* {
+  color: #ffffff; 
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #e5e7eb;
+  opacity: 1;
+}
+
+
+
+
+.gradient-background {
+  background: linear-gradient(135deg, #ff3e78, #ff677d, #ff9d6c, #ffbd69, #ff677d, #ff3e78);
+  background-size: 400% 400%;
+  animation: gradient-animation 60s ease infinite;
+  position: relative;
+  overflow-x: hidden;  /* Hide horizontal overflow */
+  overflow-y: auto;  /* Allow vertical scrolling */
+}
+
+
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

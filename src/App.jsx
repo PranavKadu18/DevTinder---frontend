@@ -11,6 +11,8 @@ import Requests from "./Pages/Requests";
 import TermsAnsConditions from "./Pages/TermsAnsConditions";
 import Support from "./Pages/Support";
 import AboutUs from "./Pages/AboutUs";
+import Premium from "./Pages/Premuium";
+import Chat from "./Pages/Chat";
 
 const App = () => {
   return (
@@ -26,6 +28,9 @@ const App = () => {
           <Route path="/tnc" element={<TermsAnsConditions />} />
           <Route path="/support" element={<Support />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/premium" element={<Premium />} />
+          <Route path="/chat/:targetUserId" element={<Chat />} />
+          
         </Route>
       </Routes>
     </>

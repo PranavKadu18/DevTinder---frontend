@@ -41,7 +41,6 @@ const EditProfile = ({ currData }) => {
         setSaved(false);
         navigate("/");
       }, 3000);
-      
     } catch (error) {
       seterr(error.response.data);
       if (error.status == 401) navigate("/login");
@@ -62,7 +61,7 @@ const EditProfile = ({ currData }) => {
         )}
 
         <div className="sm:flex gap-6">
-          <div className="card bg-base-300 sm:min-w-96 shadow-xl">
+          <div className="card bg-[#7d1935] sm:min-w-96 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">Profile</h2>
 
@@ -70,51 +69,63 @@ const EditProfile = ({ currData }) => {
                 <div className="left">
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">Enter Your First Name</span>
+                      <span className="label-text text-white">
+                        Enter Your First Name
+                      </span>
                     </div>
                     <input
                       value={firstName}
                       onChange={(val) => setFirstName(val.target.value)}
                       type="text"
-                      className="input input-bordered w-full max-w-xs"
+                      className="input input-bordered bg-[#d14d6a] w-full max-w-xs"
                     />
                   </label>
 
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">Enter Your Last Name</span>
+                      <span className="label-text text-white">
+                        Enter Your Last Name
+                      </span>
                     </div>
                     <input
                       value={lastName}
                       onChange={(val) => setLastName(val.target.value)}
                       type="text"
-                      className="input input-bordered w-full max-w-xs"
+                      className="input input-bordered bg-[#d14d6a] w-full max-w-xs"
                     />
                   </label>
 
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">Enter Your Age</span>
+                      <span className="label-text text-white">
+                        Enter Your Age
+                      </span>
                     </div>
                     <input
                       value={age}
                       onChange={(val) => setAge(val.target.value)}
                       type="text"
-                      className="input input-bordered w-full max-w-xs"
+                      className="input input-bordered bg-[#d14d6a] w-full max-w-xs"
                     />
                   </label>
 
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">Select Your Gender</span>
+                      <span className="label-text text-white">
+                        Select Your Gender
+                      </span>
                     </div>
-                    <div className="dropdown dropdown-bottom">
-                      <div tabIndex={0} role="button" className="btn m-1">
+                    <div className="dropdown dropdown-bottom ">
+                      <div
+                        tabIndex={0}
+                        role="button"
+                        className="btn m-1 bg-[#d14d6a] text-white"
+                      >
                         {gender}
                       </div>
                       <ul
                         tabIndex={0}
-                        className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                        className="dropdown-content menu bg-[#d14d6a] rounded-box z-[1] w-52 p-2 shadow"
                       >
                         <li>
                           <a onClick={() => setGender("Male")}>Male</a>
@@ -133,19 +144,19 @@ const EditProfile = ({ currData }) => {
                 <div className="right">
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">
+                      <span className="label-text text-white">
                         Enter Tags That Describe You
                       </span>
                     </div>
                     <input
                       value={tags}
                       onChange={(val) => setTags(val.target.value)}
-                      className="input input-bordered w-full max-w-xs"
+                      className="input input-bordered bg-[#d14d6a] w-full max-w-xs"
                     />
                   </label>
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">
+                      <span className="label-text text-white">
                         Enter Profile Photo URL
                       </span>
                     </div>
@@ -153,16 +164,18 @@ const EditProfile = ({ currData }) => {
                       value={profilePhoto}
                       onChange={(val) => setProfilePhoto(val.target.value)}
                       type="text"
-                      className="input input-bordered w-full max-w-xs"
+                      className="input input-bordered bg-[#d14d6a] w-full max-w-xs"
                     />
                   </label>
 
                   <label className="form-control w-full max-w-xs pb-2">
                     <div className="label">
-                      <span className="label-text">Enter Your Bio</span>
+                      <span className="label-text text-white">
+                        Enter Your Bio
+                      </span>
                     </div>
                     <textarea
-                      className="textarea textarea-bordered"
+                      className="textarea textarea-bordered bg-[#d14d6a]"
                       value={bio}
                       onChange={(val) => setBio(val.target.value)}
                     ></textarea>

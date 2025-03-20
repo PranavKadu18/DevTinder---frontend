@@ -33,12 +33,16 @@ const Login = () => {
         dispatch(setUser(res.data));
         navigate("/");
       } else {
-        const res = await axios.post(BASE_URL + "/signup", {
-          firstName,
-          lastName,
-          email,
-          password,
-        },{withCredentials:true});
+        const res = await axios.post(
+          BASE_URL + "/signup",
+          {
+            firstName,
+            lastName,
+            email,
+            password,
+          },
+          { withCredentials: true }
+        );
         dispatch(setUser(res.data.result));
         navigate("/profile");
       }
@@ -50,7 +54,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="card bg-base-300 w-96 shadow-xl">
+      <div className="card bg-[#7d1935] w-96 shadow-xl">
         <div className="card-body">
           <h2 className="card-title">{isLogin ? "LogIn" : "SignUp"}</h2>
 
@@ -60,14 +64,16 @@ const Login = () => {
             } w-full max-w-xs pb-2`}
           >
             <div className="label">
-              <span className="label-text">Enter Your First Name</span>
+              <span className="label-text text-white">
+                Enter Your First Name
+              </span>
             </div>
             <input
               value={firstName}
               onChange={(val) => setFirstName(val.target.value)}
               type="text"
               placeholder="Name"
-              className="input input-bordered w-full max-w-xs"
+              className="input bg-[#d14d6a] input-bordered w-full max-w-xs"
             />
           </label>
 
@@ -77,40 +83,42 @@ const Login = () => {
             }  w-full max-w-xs pb-2`}
           >
             <div className="label">
-              <span className="label-text">Enter Your Last Name</span>
+              <span className="label-text text-white">
+                Enter Your Last Name
+              </span>
             </div>
             <input
               value={lastName}
               onChange={(val) => setLastName(val.target.value)}
               type="text"
               placeholder="Name"
-              className="input input-bordered w-full max-w-xs"
+              className="input bg-[#d14d6a] input-bordered w-full max-w-xs"
             />
           </label>
 
           <label className="form-control w-full max-w-xs pb-2">
             <div className="label">
-              <span className="label-text">Enter Your Email</span>
+              <span className="label-text text-white">Enter Your Email</span>
             </div>
             <input
               value={email}
               onChange={(val) => setEmail(val.target.value)}
               type="text"
               placeholder="Email"
-              className="input input-bordered w-full max-w-xs"
+              className="input bg-[#d14d6a] input-bordered w-full max-w-xs"
             />
           </label>
 
           <label className="form-control w-full max-w-xs pb-2">
             <div className="label">
-              <span className="label-text">Enter Your Password</span>
+              <span className="label-text text-white">Enter Your Password</span>
             </div>
             <input
               value={password}
               onChange={(val) => setPassword(val.target.value)}
               type="text"
               placeholder="password"
-              className="input input-bordered w-full max-w-xs"
+              className="input bg-[#d14d6a] input-bordered w-full max-w-xs"
             />
           </label>
 

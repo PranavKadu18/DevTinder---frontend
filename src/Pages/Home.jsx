@@ -19,20 +19,20 @@ const Home = () => {
       });
       dispatch(setUser(res.data));
     } catch (error) {
-      if(error.status == 401) navigate("/login");
+      if (error.status == 401) navigate("/login");
     }
   };
 
   useEffect(() => {
     // console.log("home rendered");
-    
+
     fetchUser();
   }, []);
 
   return (
-    <div className="w-[110vw] h-[102vh] sm:w-full sm:h-screen bg-base-100">
+    <div className="w-[110vw] h-[102vh] sm:w-full sm:h-screen  gradient-background">
       <Navbar />
-      <div className="w-full min-h-[77.8%] p-5 flex justify-center ">
+      <div className="w-full min-h-[77.8%] p-5 flex justify-center gradient-background">
         <Outlet />
       </div>
       <Footer />

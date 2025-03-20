@@ -13,7 +13,9 @@ const Card = ({ currUser }) => {
   const handleSendRequest = async (status, userId) => {
     try {
       const res = await axios.post(
-        BASE_URL + "/request/send/" + status + "/" + userId,{},{withCredentials:true}
+        BASE_URL + "/request/send/" + status + "/" + userId,
+        {},
+        { withCredentials: true }
       );
       dispatch(deleteUserFromFeed(userId));
     } catch (error) {
@@ -24,7 +26,7 @@ const Card = ({ currUser }) => {
   return (
     (currUser && (
       <div className="flex justify-center ">
-        <div className="card bg-base-300 w-[88vw] sm:w-96 shadow-xl">
+        <div className="card bg-[#7d1935] w-[88vw] sm:w-96 shadow-xl">
           <figure className="w-full h-56 overflow-hidden">
             <img
               className="w-full h-full object-cover object-center"
@@ -36,7 +38,7 @@ const Card = ({ currUser }) => {
           <div className="card-body">
             <h2 className="card-title">
               {currUser.firstName} {currUser.lastName} ({currUser.age}){" "}
-              <span className="italic text-sm text-zinc-600">
+              <span className="italic text-sm text-[#FF10F0]">
                 {currUser.gender}
               </span>
             </h2>

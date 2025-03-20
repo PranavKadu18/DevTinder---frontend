@@ -15,16 +15,25 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logout = async () => {
-    const res = await axios.post(BASE_URL + "/logout",{},{withCredentials : true});
+    const res = await axios.post(
+      BASE_URL + "/logout",
+      {},
+      { withCredentials: true }
+    );
     dispatch(deleteUser());
     dispatch(deleteFeed());
     navigate("/login");
-  }
+  };
 
   return (
-    <div className="navbar bg-base-300">
+    <div className="navbar bg-[#7d1935]">
       <div className="flex-1 mx-4">
-        <a onClick={() => data && navigate("/")} className="btn btn-ghost text-xl">🧑‍💻 DevCon</a>
+        <a
+          onClick={() => data && navigate("/")}
+          className="btn btn-ghost text-xl"
+        >
+          🧑‍💻 DevCon
+        </a>
       </div>
       {data && (
         <div className="flex-none">
@@ -43,16 +52,16 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-300 rounded-box z-[1] mt-44 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-[#e05270] hover:bg-[#c43e5c] rounded-box z-[1] mt-44 w-52 p-2 shadow"
             >
               <li onClick={() => navigate("/profile")}>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <a className="justify-between">Profile</a>
               </li>
               <li>
                 <NavLink to="/connections">Connections</NavLink>
+              </li>
+              <li>
+                <NavLink to="/premium">Buy Premium</NavLink>
               </li>
               <li>
                 <NavLink to="/">Feed</NavLink>
