@@ -20,11 +20,14 @@ const Chat = () => {
       withCredentials: true,
     });
 
-    console.log(result.data);
+    //console.log(result.data);
 
     const chatMessages = result.data.map((ele) => {
-      return {senderName : ele.senderId.firstName,text : ele.text,time: ele.time}
+      return {senderId:ele.senderId._id,senderName : ele.senderId.firstName,text : ele.text,time: ele.time}
     })
+
+    //console.log(chatMessages);
+    
     
     setmessage(chatMessages);
     
@@ -40,10 +43,10 @@ const Chat = () => {
 
     socket.emit("joinChat", { targetUserId, userId, senderName });
 
-    socket.on("receiveMessage", ({ text, senderName }) => {
+    socket.on("receiveMessage", ({ text, senderName ,time,senderId}) => {
       setmessage((prev) => [
         ...prev,
-        { text, senderName, time: new Date().toLocaleTimeString() },
+        { text, senderName, time ,senderId},
       ]);
     });
 
@@ -76,7 +79,7 @@ const Chat = () => {
       <hr />
       <div className="h-[80%] w-[100%] mt-3 overflow-y-scroll">
         {message.map((msg, idx) => (
-          <div key={idx} className="chat chat-start">
+          <div key={idx} className={`chat ${msg.senderId?.toString() == userId?.toString() ? "chat-end" : "chat-start"}`}>
             <div className="chat-header">
               {msg.senderName}
               <time className="text-xs ml-1 opacity-50">{msg.time}</time>
