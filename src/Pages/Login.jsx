@@ -133,6 +133,18 @@ const Login = () => {
               </span>
             </p>
           )}
+
+          {!isLogin && (
+            <p>
+              <span
+                className="text-blue-500 cursor-pointer"
+                onClick={() => setIsLogin(true)}
+              >
+                Log In
+              </span>
+            </p>
+          )}
+
           <p className="text-red-600">{err}</p>
 
           <div className="card-actions justify-end">

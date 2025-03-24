@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowRoundBack, IoMdSend } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import { createSocketConnection } from "../utils/socket";
@@ -9,12 +9,13 @@ import { BASE_URL } from "../utils/constants";
 const Chat = () => {
   const [message, setmessage] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [lastseen,setlastseen] = useState("");
+  const [lastseen, setlastseen] = useState("");
   const navigate = useNavigate();
   const { targetUserId } = useParams();
   const { data } = useSelector((store) => store.user);
   const userId = data?._id;
   const senderName = data?.firstName;
+  const chatBox = useRef(null);
 
   const getChats = async () => {
     const result = await axios.get(BASE_URL + "/chats/" + targetUserId, {
@@ -24,20 +25,31 @@ const Chat = () => {
     //console.log(result.data);
 
     const chatMessages = result.data.messages.map((ele) => {
-      return {senderId:ele.senderId._id,senderName : ele.senderId.firstName,text : ele.text,time: ele.time}
-    })
+      return {
+        senderId: ele.senderId._id,
+        senderName: ele.senderId.firstName,
+        text: ele.text,
+        time: ele.time,
+      };
+    });
 
     setlastseen(result.data.timediff);
-    
+
     //console.log(chatMessages);
-    
+
     setmessage(chatMessages);
-    
   };
 
   useEffect(() => {
+    if (chatBox.current) {
+        chatBox.current.scrollTop = chatBox.current.scrollHeight;
+      
+    }
+  }, [message]);
+
+  useEffect(() => {
     getChats();
-  },[])
+  }, []);
 
   useEffect(() => {
     //now as soon as user ones chat he should join chat room so use useEffect
@@ -45,11 +57,8 @@ const Chat = () => {
 
     socket.emit("joinChat", { targetUserId, userId, senderName });
 
-    socket.on("receiveMessage", ({ text, senderName ,time,senderId}) => {
-      setmessage((prev) => [
-        ...prev,
-        { text, senderName, time ,senderId},
-      ]);
+    socket.on("receiveMessage", ({ text, senderName, time, senderId }) => {
+      setmessage((prev) => [...prev, { text, senderName, time, senderId }]);
     });
 
     return () => {
@@ -76,12 +85,26 @@ const Chat = () => {
           onClick={() => navigate(-1)}
           className="text-3xl"
         />
-        <h1>Chat { lastseen == "Online" ? <span className="text-green-400">User is {lastseen}</span> : <span>last seen {lastseen}</span>}</h1>
+        <h1>
+          Chat{" "}
+          {lastseen == "Online" ? (
+            <span className="text-green-400">User is {lastseen}</span>
+          ) : (
+            <span>last seen {lastseen}</span>
+          )}
+        </h1>
       </div>
       <hr />
-      <div className="h-[80%] w-[100%] mt-3 overflow-y-scroll">
+      <div ref={chatBox} className="h-[80%] w-[100%] mt-3 overflow-y-scroll">
         {message.map((msg, idx) => (
-          <div key={idx} className={`chat ${msg.senderId?.toString() == userId?.toString() ? "chat-end" : "chat-start"}`}>
+          <div
+            key={idx}
+            className={`chat ${
+              msg.senderId?.toString() == userId?.toString()
+                ? "chat-end"
+                : "chat-start"
+            }`}
+          >
             <div className="chat-header">
               {msg.senderName}
               <time className="text-xs ml-1 opacity-50">{msg.time}</time>
