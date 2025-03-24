@@ -16,13 +16,13 @@ const TermsAnsConditions = () => {
       </div>
       <div className="mt-8 pl-10">
         <p>
-          Welcome to DevTinder! Before you start swiping and finding your next
+          Welcome to DevCon! Before you start swiping and finding your next
           coding (or life) partner, let’s lay down some ground rules:
         </p>
         <br />
         <p>
           <h1 className="text-xl font-bold">💖 1. Age and Eligibility</h1>
-          You must be 18+ to use DevTinder — this ain't kindergarten, folks. 😎
+          You must be 18+ to use DevCon — this ain't kindergarten, folks. 😎
         </p>
         <br />
         <p>
@@ -49,7 +49,7 @@ const TermsAnsConditions = () => {
         <br />
         <p>
           <h1 className="text-xl font-bold">👀 5. No Guarantees</h1> We’re not
-          Cupid. If things don’t work out, it’s on you — DevTinder just sets the
+          Cupid. If things don’t work out, it’s on you — DevCon just sets the
           stage; the magic (or disaster) is up to you. 😉
         </p>
         <br />

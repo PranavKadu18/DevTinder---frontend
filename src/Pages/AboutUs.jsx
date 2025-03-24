@@ -15,14 +15,14 @@ const AboutUs = () => {
       </div>
       <div className="mt-8 pl-10">
         <p>
-          Welcome to DevTinder — where love, friendship, and code come together.
+          Welcome to DevCon — where love, friendship, and code come together.
           ❤️👨‍💻👩‍💻
         </p>
         <br />
         <p>
           Tired of awkward hallway stares? Scared of sliding into DMs? We got
-          you! DevTinder is your go-to platform to meet fellow students from
-          your college (or nearby) without the stress of "what if they say no?"
+          you! DevCon is your go-to platform to meet fellow students from your
+          college (or nearby) without the stress of "what if they say no?"
         </p>{" "}
         <br />
         <p>
@@ -37,7 +37,7 @@ const AboutUs = () => {
         </p>{" "}
         <br />{" "}
         <p>
-          It’s time to stop debugging your love life. Try DevTinder today — you
+          It’s time to stop debugging your love life. Try DevCon today — you
           never know, your next "commit" might just be to someone special. 😏💖
         </p>
       </div>
