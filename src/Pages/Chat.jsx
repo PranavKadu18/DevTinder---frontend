@@ -9,6 +9,7 @@ import { BASE_URL } from "../utils/constants";
 const Chat = () => {
   const [message, setmessage] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [lastseen,setlastseen] = useState("");
   const navigate = useNavigate();
   const { targetUserId } = useParams();
   const { data } = useSelector((store) => store.user);
@@ -22,12 +23,13 @@ const Chat = () => {
 
     //console.log(result.data);
 
-    const chatMessages = result.data.map((ele) => {
+    const chatMessages = result.data.messages.map((ele) => {
       return {senderId:ele.senderId._id,senderName : ele.senderId.firstName,text : ele.text,time: ele.time}
     })
 
-    //console.log(chatMessages);
+    setlastseen(result.data.timediff);
     
+    //console.log(chatMessages);
     
     setmessage(chatMessages);
     
@@ -69,12 +71,12 @@ const Chat = () => {
 
   return (
     <div className="sm:w-[50vw] w-full h-[70vh] px-2 pb-2 rounded-md bg-[#7d1935]">
-      <div className="w-[100%] h-[5%] gap-[40%] flex items-center py-3">
+      <div className="w-[100%] h-[5%] gap-[30%] flex items-center py-3">
         <IoIosArrowRoundBack
           onClick={() => navigate(-1)}
           className="text-3xl"
         />
-        <h1>Chat</h1>
+        <h1>Chat { lastseen == "Online" ? <span className="text-green-400">User is {lastseen}</span> : <span>last seen {lastseen}</span>}</h1>
       </div>
       <hr />
       <div className="h-[80%] w-[100%] mt-3 overflow-y-scroll">
